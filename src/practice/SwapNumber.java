@@ -294,6 +294,8 @@ public class SwapNumber {
 //        xSubArrays();
 //        leetcode();
         weightLifting();
+        
+//        All Done
          
     }
 	 public static void   weightLifting (){ 
