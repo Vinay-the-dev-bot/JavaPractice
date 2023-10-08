@@ -293,10 +293,160 @@ public class SwapNumber {
 //        Virus();
 //        xSubArrays();
 //        leetcode();
-        weightLifting();
+//        weightLifting();
+//        diversity();
+//        abandonCity();
+        ConsecutiveOnes();
         
 //        All Done
          
+    }
+	public static void ConsecutiveOnes( ){ 
+		
+		String str = "01010011";
+		int N = str.length();
+		int K = 2; 
+		if(N==K) {
+			System.out.println(N);
+			return;
+		}
+		int[] resLeft = new int[N]; 
+		resLeft[0] = 0;
+		for(int i = 1; i<N;i++) {
+			int j = i;
+			while(j>=0 && str.charAt(j) == '1' ) {
+				j--;
+			}
+			resLeft[i] = i-j; 
+		}
+		int[] resRight = new int[N]; 
+		resRight[N-1] = 0;
+		for(int i = N-2; i>=0;i--) {
+			int j = i;
+			while( j<N && str.charAt(j) == '1' ) {
+				j++; 
+			}
+			resRight[i] = j-i; 
+		}
+
+		for(int i = 0; i<N;i++) {
+			System.out.print(str.charAt(i) + " ");
+		}
+		System.out.println();
+		for(int i = 0; i<N;i++) {
+			System.out.print(resLeft[i] + " ");
+		}System.out.println();
+		for(int i = 0; i<N;i++) {
+			System.out.print(resRight[i] + " ");
+		}
+		int max = 0;
+
+//		for(int i = 0; i<N;i++) {
+//			boolean ind = false;
+//			int count = 0;
+//			int j = i;
+//			while(str.charAt(j) == '0') {
+//				count++;
+//				j++;
+//			}
+//			if(count == K) {
+//				ind = true;
+//			}
+//			if(ind) {
+//				max = Math.max(max, K+resLeft[i]+resRight[i+K-1]);
+//			}
+//		}
+		System.out.println("zsongnsiv  hasdh ");
+		for(int i = 0; i<N-K;i++) {
+			boolean ind = false;
+			int count = 0;
+			 for(int j = i; j<(i+K);j++) {   
+				if(str.charAt(j) == '0') {
+					count++;
+				}
+			 }
+			 if(count == K) {
+				 ind = true;
+			 }
+			 if(ind) {
+				 int size = K+resLeft[i-1] + resRight[i+K]; 
+				 max = Math.max(max, size);
+			 } 
+		}
+		 
+
+		 System.out.println("Max : " + max);
+		
+	}
+	public static void abandonCity( ){ 
+		int[] arr = {1,2,3,4,5};  
+		int N = arr.length;
+		int K = 9;
+		int size = Integer.MAX_VALUE; 
+	    int i = 0;
+	    int j = 0;  
+	    int l = N-1;
+	    int r = N-1;
+   	 int sum=0;  
+   	 int sum2 = 0;
+   	while(i<N && j<N && l>0 && r>0){
+//          System.out.println("N : " + N + "  K : " + K );
+//   		System.out.println(i + " : " + j);
+        if(sum<K){
+            sum += arr[i];
+             i++;
+        }else if(sum>K){
+             sum -= arr[j];
+            j++;
+        }
+        
+        if(sum<K){
+            sum2 += arr[l];
+             l--;
+        }else if(sum>K){
+             sum2 -= arr[r];
+            r--;
+        }
+        
+         if(sum == K){ 
+        		System.out.println(i + " : " + j);
+            size = Math.min(size, Math.abs(i-j+1));
+            
+        } 
+         if(sum2 == K) {
+        	 size = Math.min(size, Math.abs(l-r+1));
+         }
+        
+    }
+    System.out.println(   size);
+    
+}
+	public static void diversity( ){  
+//		int[] arr = {1,10,20};   
+		int[] arr = {1,2,13,12,15,17}; 
+//		1 2 12 13 15 17 
+		int N = arr.length;
+		int K = 4;
+		int size = 1;
+        Arrays.sort(arr); 
+        int i = 0;
+        int j = 0;
+        while(i<N && j<N){
+            int diff = Math.abs(arr[j]-arr[i]);
+            if(diff<=K  ) { 
+            	System.out.println(i + " : " + j + " : " + diff );
+            	if(i!=j) {
+            		System.out.println("inside : " + Math.abs(j-i));
+            		size = Math.max(size, Math.abs(i-j+1));
+            	}
+            	i++; 
+            }else {
+            	j++;
+            }
+            
+        }
+        System.out.println("SIZE : " + size);
+        
     }
 	 public static void   weightLifting (){ 
 		 int[] arr  =  {17, 12, 5, 3, 14, 13, 3, 2};  
