@@ -296,10 +296,134 @@ public class SwapNumber {
 //        weightLifting();
 //        diversity();
 //        abandonCity();
-        ConsecutiveOnes();
+//        ConsecutiveOnes();
         
-//        All Done
+//        All Done  
+//        String[] students = {"jack 158 85 112", "john 168 74 124",  "arti 148 65 120", "bhuvan 182 84 124", 
+//        		"navi 182 84 124",       "vijay 175 88 115",         "amit 180 89 119",  "kevin 182 77 120", 
+//        		"rohit 174 85 100", "vivek 184 75 111"}; 
+//        String[] students = {"jack 158 85 112", "john 168 74 124",  "arti 148 65 120", "bhuvan 182 84 120", 
+//        		"navi 182 84 124",       "vijay 175 88 115",         "amit 175 88 115",  "kevin 182 77 120", 
+//        		"rohit 174 85 100", "vivek 184 75 111"}; 
+//        navi, john,  bhuvan, kevin,   arti,  amit,  vijay,  jack
+        String[] students = {"jack 158 85 112", "john 168 74 124",  "arti 148 65 120", "bhuvan 182 84 124", 
+        		"navi 182 80 124",       "vijay 175 89 115",         "amit 175 89 115",  "kevin 182 77 128"} ;
+//        kevin,    navi,  bhuvan, john, arti,   amit, vijay, jack
+        int N = students.length;
+  
+        MeritList( N,students)   ; 
          
+    }
+	public static void MeritList(int N, String []students){ 
+        // System.out.println("N + " +N);
+        //  for(int i = 0; i<N;i++){
+        //     System.out.println(students[i]); 
+        //  }
+        String[] names = new String[N];
+        int[] heights = new int[N];
+        int[] weights = new int[N];
+        int[] iqs = new int[N];
+       for(int i = 0 ; i<N;i++){
+            
+        String input = students[i];
+         
+        String[] parts = input.split("\\s+");
+         names[i] = parts[0];
+        heights[i] = Integer.valueOf(parts[1]);
+         weights[i] = Integer.valueOf(parts[2]);
+         iqs[i] = Integer.valueOf(parts[3]);
+       }
+      
+        for(int i = 0; i<N-1; i++){
+            for(int j = 0; j<N-1;j++){
+                if(iqs[j]<iqs[j+1]){  
+	                	int temp = iqs[j];
+	                	iqs[j] = iqs[j+1];
+	                	iqs[j+1] = temp; 
+                    	int temp3 = heights[j];
+                    	heights[j] = heights[j+1];
+                    	heights[j+1] = temp3; 
+                    	int temp4 = weights[j];
+                    	weights[j] = weights[j+1];
+                    	weights[j+1] = temp4; 
+                    	String temp5 = names[j];
+                    	names[j] = names[j+1];
+                    	names[j+1] = temp5;
+                        String temp2 = students[j];
+	                    students[j] = students[j+1];
+	                    students[j+1] = temp2; 
+                }   else if(iqs[j] == iqs[j+1] && heights[j] < heights[j+1] ){  
+                	int temp = iqs[j];
+                	iqs[j] = iqs[j+1];
+                	iqs[j+1] = temp; 
+                    	int temp3 = heights[j];
+                    	heights[j] = heights[j+1];
+                    	heights[j+1] = temp3; 
+                    	int temp4 = weights[j];
+                    	weights[j] = weights[j+1];
+                    	weights[j+1] = temp4; 
+                    	String temp5 = names[j];
+                    	names[j] = names[j+1];
+                    	names[j+1] = temp5;
+                        String temp2 = students[j];
+	                    students[j] = students[j+1];
+	                    students[j+1] = temp2;  
+                } else if(iqs[j] == iqs[j+1] && heights[j] == heights[j+1] && weights[j]>weights[j+1] ){  
+//                	System.out.println(weights[j] + " : " + weights[j+1]);
+                	int temp = iqs[j];
+                	iqs[j] = iqs[j+1];
+                	iqs[j+1] = temp; 
+                    	int temp3 = heights[j];
+                    	heights[j] = heights[j+1];
+                    	heights[j+1] = temp3; 
+                    	int temp4 = weights[j];
+                    	weights[j] = weights[j+1];
+                    	weights[j+1] = temp4; 
+                    	String temp5 = names[j];
+                    	names[j] = names[j+1];
+                    	names[j+1] = temp5;
+                        String temp2 = students[j];
+	                    students[j] = students[j+1];
+	                    students[j+1] = temp2;  
+                }else if(iqs[j] == iqs[j+1] && heights[j] == heights[j+1] && weights[j]==weights[j+1] &&  names[j].compareTo(names[j+1])>0){  
+//                	System.out.println(names[j] + " : " + names[j+1]);
+                	int temp = iqs[j];
+                	iqs[j] = iqs[j+1];
+                	iqs[j+1] = temp; 
+                    	int temp3 = heights[j];
+                    	heights[j] = heights[j+1];
+                    	heights[j+1] = temp3; 
+                    	int temp4 = weights[j];
+                    	weights[j] = weights[j+1];
+                    	weights[j+1] = temp4; 
+                    	String temp5 = names[j];
+                    	names[j] = names[j+1];
+                    	names[j+1] = temp5;
+                        String temp2 = students[j];
+	                    students[j] = students[j+1];
+	                    students[j+1] = temp2;  
+                }
+                 
+            }
+        }
+        
+         for(int i = 0; i<N;i++){
+            System.out.println(names[i]); 
+         }
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 	public static void ConsecutiveOnes( ){ 
 		
