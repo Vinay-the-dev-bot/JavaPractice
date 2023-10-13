@@ -13,75 +13,76 @@ public class SwapNumber {
 	int number2;  
 	static int x = 0;
 	
-	public static void main(String[] args) {
-		char ch = '#';
-		  class FastReader {
+	class FastReader {
 
-		        BufferedReader br;
-		        StringTokenizer st;
-		  
-		        public FastReader()
-		        {
-		            br = new BufferedReader(
-		                new InputStreamReader(System.in));
-		        }
-		  
-		        String next()
-		        {
-		            while (st == null || !st.hasMoreElements()) {
-		                try {
-		                    st = new StringTokenizer(br.readLine());
-		                }
-		                catch (IOException e) {
-		                    e.printStackTrace();
-		                }
-		            }
-		            return st.nextToken();
-		        }
-		  
-		        int nextInt() { return Integer.parseInt(next()); }
-		  
-		        long nextLong() { return Long.parseLong(next()); }
-		  
-		        double nextDouble()
-		        {
-		            return Double.parseDouble(next());
-		        }
-		  
-		        String nextLine()
-		        {
-		            String str = "";
-		            try {
-		                if(st.hasMoreTokens()){
-		                    str = st.nextToken("\n");
-		                }
-		                else{
-		                    str = br.readLine();
-		                }
-		            }
-		            catch (IOException e) {
-		                e.printStackTrace();
-		            }
-		            return str;
-		        }
-		     }
-		  class Node{
-			  int data;
-			  Node next;
-			  
-			  public Node(int data,Node next){
-			    this.data = data;
-			    this.next = next;
-			  }
-			  public Node(int data){
-			    this.data = data;
-			    this.next = null;
-			  }
-			  public Node(){
-			    this.data = 0;
-			    this.next = null;
-			  }
-			}		String sent = "I like Java";
+        BufferedReader br;
+        StringTokenizer st;
+  
+        public FastReader()
+        {
+            br = new BufferedReader(
+                new InputStreamReader(System.in));
+        }
+  
+        String next()
+        {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+  
+        int nextInt() { return Integer.parseInt(next()); }
+  
+        long nextLong() { return Long.parseLong(next()); }
+  
+        double nextDouble()
+        {
+            return Double.parseDouble(next());
+        }
+  
+        String nextLine()
+        {
+            String str = "";
+            try {
+                if(st.hasMoreTokens()){
+                    str = st.nextToken("\n");
+                }
+                else{
+                    str = br.readLine();
+                }
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+     }
+  class Node{
+	  int data;
+	  Node next;
+	  
+	  public Node(int data,Node next){
+	    this.data = data;
+	    this.next = next;
+	  }
+	  public Node(int data){
+	    this.data = data;
+	    this.next = null;
+	  }
+	  public Node(){
+	    this.data = 0;
+	    this.next = null;
+	  }
+	}	
+	public static void main(String[] args) {
+		char ch = '#'; 
+		  String sent = "I like Java";
 		sent.substring(2,4);
 		sent.length();
 		int age = 2;
@@ -306,14 +307,79 @@ public class SwapNumber {
 //        		"navi 182 84 124",       "vijay 175 88 115",         "amit 175 88 115",  "kevin 182 77 120", 
 //        		"rohit 174 85 100", "vivek 184 75 111"}; 
 //        navi, john,  bhuvan, kevin,   arti,  amit,  vijay,  jack
-        String[] students = {"jack 158 85 112", "john 168 74 124",  "arti 148 65 120", "bhuvan 182 84 124", 
-        		"navi 182 80 124",       "vijay 175 89 115",         "amit 175 89 115",  "kevin 182 77 128"} ;
+//        String[] students = {"jack 158 85 112", "john 168 74 124",  "arti 148 65 120", "bhuvan 182 84 124", 
+//        		"navi 182 80 124",       "vijay 175 89 115",         "amit 175 89 115",  "kevin 182 77 128"} ;
 //        kevin,    navi,  bhuvan, john, arti,   amit, vijay, jack
-        int N = students.length;
+//        int N = students.length;
   
-        MeritList( N,students)   ; 
+//        MeritList( N,students)   ; 
+        leaderboard();
+       
          
     }
+	
+	public static void leaderboard(){
+		class Students{
+		    String name;
+		    int marks;
+			public Students(String name, int marks) { 
+				this.name = name;
+				this.marks = marks;
+			} 
+		    
+		}
+		String[] students = {"rancho 45","chatur 32","raju 30","farhan 28","virus 32","joy 45"}; 
+		int N = students.length; 
+		 Students[] students2 = new Students[N];
+		for(int i = 0;i<N;i++) {
+			
+			String[] assa = students[i].split("\\s+");
+			int x = Integer.valueOf(assa[1]);
+			String str = assa[0];
+			 Students stud = new Students(str, x);
+			 students2[i] = stud;
+			
+		}
+		 
+		
+		for(int i = 0; i<N-1;i++) {
+			for(int j = 0; j<N-i-1;j++) { 
+				if(students2[j].marks < students2[j+1].marks ) {
+					Students temp = students2[j];
+					students2[j] = students2[j+1];
+					students2[j+1] = temp; 
+				}else if(students2[j].marks == students2[j+1].marks ) {
+					if(students2[j].name.compareTo(students2[j+1].name) > 0) {
+						Students temp = students2[j];
+						students2[j] = students2[j+1];
+						students2[j+1] = temp; 
+					}
+				}
+			}
+		}
+//		for(int i = 0; i<N;i++) {
+//			System.out.println(students2[i].marks + " :--: " + students2[i].name);
+//		}
+		
+//		for(int i = 0; i<N;i++) {
+//			System.out.println(i+1 + " " +students2[i].name);
+//		}
+		int rank = 1;
+		int lastMarks = students2[0].marks; 
+		 System.out.println(1 + " " +students2[0].name);
+		for(int i = 1; i<N;i++) { 
+		    if(students2[i].marks==lastMarks){ 
+		        System.out.println(rank + " " +students2[i].name);
+		        lastMarks =  students2[i].marks;
+		    } else{
+		        rank = i+1;
+		         System.out.println(rank + " " +students2[i].name);
+			        lastMarks =  students2[i].marks;
+		    } 
+           
+		}
+		 
+	}
 	public static void MeritList(int N, String []students){ 
         // System.out.println("N + " +N);
         //  for(int i = 0; i<N;i++){
