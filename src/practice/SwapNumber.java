@@ -13,56 +13,7 @@ public class SwapNumber {
 	int number2;  
 	static int x = 0;
 	
-	class FastReader {
 
-        BufferedReader br;
-        StringTokenizer st;
-  
-        public FastReader()
-        {
-            br = new BufferedReader(
-                new InputStreamReader(System.in));
-        }
-  
-        String next()
-        {
-            while (st == null || !st.hasMoreElements()) {
-                try {
-                    st = new StringTokenizer(br.readLine());
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return st.nextToken();
-        }
-  
-        int nextInt() { return Integer.parseInt(next()); }
-  
-        long nextLong() { return Long.parseLong(next()); }
-  
-        double nextDouble()
-        {
-            return Double.parseDouble(next());
-        }
-  
-        String nextLine()
-        {
-            String str = "";
-            try {
-                if(st.hasMoreTokens()){
-                    str = st.nextToken("\n");
-                }
-                else{
-                    str = br.readLine();
-                }
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-            return str;
-        }
-     }
   class Node{
 	  int data;
 	  Node next;
@@ -81,6 +32,56 @@ public class SwapNumber {
 	  }
 	}	
 	public static void main(String[] args) {
+		class FastReader {
+
+	        BufferedReader br;
+	        StringTokenizer st;
+	  
+	        public FastReader()
+	        {
+	            br = new BufferedReader(
+	                new InputStreamReader(System.in));
+	        }
+	  
+	        String next()
+	        {
+	            while (st == null || !st.hasMoreElements()) {
+	                try {
+	                    st = new StringTokenizer(br.readLine());
+	                }
+	                catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	            return st.nextToken();
+	        }
+	  
+	        int nextInt() { return Integer.parseInt(next()); }
+	  
+	        long nextLong() { return Long.parseLong(next()); }
+	  
+	        double nextDouble()
+	        {
+	            return Double.parseDouble(next());
+	        }
+	  
+	        String nextLine()
+	        {
+	            String str = "";
+	            try {
+	                if(st.hasMoreTokens()){
+	                    str = st.nextToken("\n");
+	                }
+	                else{
+	                    str = br.readLine();
+	                }
+	            }
+	            catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	            return str;
+	        }
+	     }
 		char ch = '#'; 
 		  String sent = "I like Java";
 		sent.substring(2,4);
@@ -313,16 +314,33 @@ public class SwapNumber {
 //        int N = students.length;
   
 //        MeritList( N,students)   ; 
-        leaderboard();
+        FastReader reader = new FastReader(); 
+        int N = reader.nextInt();
+        String[] students = new String[N];
+        int[] heights = new int[N];
+        int[] weights= new int[N];
+        int[] iqs= new int[N];
+        
+        for(int i = 0; i<N;i++){   
+            students[i]= reader.next();  
+            heights[i] = reader.nextInt();
+            weights[i] = reader.nextInt();
+            iqs[i] = reader.nextInt();
+        }  
+        MeritList2( N,students,heights,weights,iqs)   ;   
+//        leaderboard();
        
          
     }
-	
+	public static void rev(){
+	String sb = "Vinay";
+	 System.out.println(sb.toString());
+}
 	public static void leaderboard(){
-		class Students{
+		class Students2{
 		    String name;
 		    int marks;
-			public Students(String name, int marks) { 
+			public Students2(String name, int marks) { 
 				this.name = name;
 				this.marks = marks;
 			} 
@@ -330,13 +348,13 @@ public class SwapNumber {
 		}
 		String[] students = {"rancho 45","chatur 32","raju 30","farhan 28","virus 32","joy 45"}; 
 		int N = students.length; 
-		 Students[] students2 = new Students[N];
+		Students2[] students2 = new Students2[N];
 		for(int i = 0;i<N;i++) {
 			
 			String[] assa = students[i].split("\\s+");
 			int x = Integer.valueOf(assa[1]);
 			String str = assa[0];
-			 Students stud = new Students(str, x);
+			Students2 stud = new Students2(str, x);
 			 students2[i] = stud;
 			
 		}
@@ -345,12 +363,12 @@ public class SwapNumber {
 		for(int i = 0; i<N-1;i++) {
 			for(int j = 0; j<N-i-1;j++) { 
 				if(students2[j].marks < students2[j+1].marks ) {
-					Students temp = students2[j];
+					Students2 temp = students2[j];
 					students2[j] = students2[j+1];
 					students2[j+1] = temp; 
 				}else if(students2[j].marks == students2[j+1].marks ) {
 					if(students2[j].name.compareTo(students2[j+1].name) > 0) {
-						Students temp = students2[j];
+						Students2 temp = students2[j];
 						students2[j] = students2[j+1];
 						students2[j+1] = temp; 
 					}
@@ -475,6 +493,71 @@ public class SwapNumber {
         
          for(int i = 0; i<N;i++){
             System.out.println(names[i]); 
+         }
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+	
+	public static void MeritList2(int N, String []students , int[] heights,int[] weights, int[] iqs){ 
+        // System.out.println("N + " +N);
+        //  for(int i = 0; i<N;i++){
+        //     System.out.println(students[i]); 
+        //  }
+		class students{
+			String name;
+			int height;
+			int weight;
+			int iq;
+		}
+       students[] Students = new students[N];
+       for(int i = 0 ; i<N;i++){
+             
+    	   students stud = new students(); 
+    	   stud.name = students[i];
+    	   stud.height = heights[i];
+    	   stud.weight = weights[i];
+    	   stud.iq = iqs[i];
+    	   Students[i] = stud; 
+       }
+      
+        for(int j = 0; j<N-1; j++){ 
+            for(int i = 0; i<N-1;i++){
+                if(Students[i].iq < Students[i+1].iq ) {
+                	students temp = Students[i];
+                	Students[i] = Students[i+1];
+                	Students[i+1] = temp;
+                }else if(Students[i].iq == Students[i+1].iq && Students[i].height < Students[i+1].height  ) {  
+                    	students temp = Students[i];
+                    	Students[i] = Students[i+1];
+                    	Students[i+1] = temp; 
+                }else if(Students[i].height == Students[i+1].height && Students[i].weight> Students[i+1].weight  ) { 
+                	students temp = Students[i];
+                	Students[i] = Students[i+1];
+                	Students[i+1] = temp; 
+                }else if(Students[i].weight == Students[i+1].weight && (Students[i].name.compareTo(Students[i+1].name)>0)) { 
+                	students temp = Students[i];
+                	Students[i] = Students[i+1];
+                	Students[i+1] = temp; 
+                }
+                 
+                
+                }
+            }
+        
+         for(int i = 0; i<N;i++){
+            System.out.println(Students[i].name); 
          }
       
         
