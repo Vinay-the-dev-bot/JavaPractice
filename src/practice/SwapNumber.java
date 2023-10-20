@@ -98,7 +98,7 @@ public class SwapNumber {
         String str23 = "epxynzn"; 
         Arrays.sort(marks);
         String[] classNames =  {"Class-V", "Class-VI", "Class-VII", "Class-VIII"};
-        int[] values = {1, 2, 3, 4};
+        Queue<Integer> queue = new LinkedList<>();
 //      canthepersonvote(age,citizenship);
 //		swapnumbers(22,56);
 //		swapnumbers("isjbv","skjjv");
@@ -314,24 +314,202 @@ public class SwapNumber {
 //        int N = students.length;
   
 //        MeritList( N,students)   ; 
-        FastReader reader = new FastReader(); 
-        int N = reader.nextInt();
-        String[] students = new String[N];
-        int[] heights = new int[N];
-        int[] weights= new int[N];
-        int[] iqs= new int[N];
-        
-        for(int i = 0; i<N;i++){   
-            students[i]= reader.next();  
-            heights[i] = reader.nextInt();
-            weights[i] = reader.nextInt();
-            iqs[i] = reader.nextInt();
-        }  
-        MeritList2( N,students,heights,weights,iqs)   ;   
+//        FastReader reader = new FastReader(); 
+//        int N = reader.nextInt();
+//        String[] students = new String[N];
+//        int[] heights = new int[N];
+//        int[] weights= new int[N];
+//        int[] iqs= new int[N];
+//        
+//        for(int i = 0; i<N;i++){   
+//            students[i]= reader.next();  
+//            heights[i] = reader.nextInt();
+//            weights[i] = reader.nextInt();
+//            iqs[i] = reader.nextInt();
+//        }  
+//        MeritList2( N,students,heights,weights,iqs)   ;   
 //        leaderboard();
+//        MasaiCodingCompetition();
+//        DoctorsAppointment();
+//        GTsidsd();
+        monoq();
        
          
     }
+	
+	public static void monoq() {
+		String str = "etmgbwpnblru";
+		int N = str.length();
+		int K = 1;
+
+		 Stack<String> st = new Stack<>();
+        StringBuilder sb2 = new StringBuilder();
+		 StringBuilder sb3 = new StringBuilder();
+		for(int i = 0 ;i<K;i++) {
+			sb3.append(str.charAt(i));
+			
+		}
+		st.push(sb3.toString());
+         for(int i = 0; i<N-K+1;i++){ 
+//        	 if(!st.isEmpty()) {
+//        		 System.out.println(st.peek());
+//        	 }
+            StringBuilder sb = new StringBuilder();
+            for(int j = i; j<K+i;j++){
+                sb.append(str.charAt(j)); 
+            }
+//            System.out.println(sb + " : ");
+            String str2 = sb.toString(); 
+            if(!st.isEmpty()){
+                if(st.peek().compareTo(str2)>=0){
+//                    sb2.append(st.peek()); 
+                    st.push(str2);
+                }
+//                else{
+//                    sb2.append(str2);
+//                }
+            }
+//            st.push(str2);
+            
+         }
+         
+        	 System.out.println(sb2);
+         if(sb2.length() == 0) {
+        	 System.out.println(str);
+         }else {
+        	 for(int i = sb2.length()-K;i<sb2.length();i++) {
+        		 System.out.print(sb2.charAt(i));
+        	 }
+         }
+         System.out.println(st.peek()  );
+	}
+	
+	public static void DoctorsAppointment() { 
+		Scanner fr =  new Scanner(System.in);
+//	        int N = fr.nextInt();
+//	        int[] arr1 = new int[N];
+//	        ArrayList<Integer> arr2 = new ArrayList<>();
+//		int[] arr1 = {1,2,3,4};
+//		int[] arr2 = {4,2,3,1};
+//		int N = 4;
+		int[] arr1 = {18,19,14,3,20,13,10,15,8,9,16,5,11,7,17,2,12,6,1,4};
+		int[] arr2 = {20,10,13,15,17,2,12,18,16,8,9,6,5,19,1,7,14,3,11,4};
+		int N = 20;
+//		18 19 14 3 20 13 10 15 8 9 16 5 11 7 17 2 12 6 1 4
+//		20 10 13 15 17 2 12 18 16 8 9 6 5 19 1 7 14 3 11 4
+		
+		ArrayList<Integer> arr = new ArrayList<>(); 
+		Queue<Integer> qu = new LinkedList<>();
+		int moves = 0;
+	        for(int i = 0; i <N;i++){
+	             qu.add(arr2[i]);
+	        }
+	        for(int i = 0; i <N;i++){
+	            arr.add(arr1[i]);
+	        } 
+	        System.out.println(qu); 
+	       while(qu.size()>1){
+	        	 int x = qu.remove();  
+	        	 int j = 0;
+	        	 int count = 1;
+	        	 while(arr.get(j) != x) { 
+	        			count++; 
+	        			j++;
+	        		
+	        	}  
+	        		 moves += count;   
+	        		 arr.remove(j); 
+	        }
+		System.out.println(moves);
+	}
+	
+	public static void GTsidsd()
+	{
+		  String[] input = {
+		            "5",
+		            "E 1 1",
+		            "E 2 1",
+		            "E 1 2",
+		            "D",
+		            "D"
+		        };
+
+		        int Q = Integer.parseInt(input[0]);
+		        Queue<Integer>[] clubQueues = new LinkedList[5];
+
+		        for (int i = 1; i <= 4; i++) {
+		            clubQueues[i] = new LinkedList<>();
+		        }
+
+		        for (int i = 1; i <= Q; i++) {
+		            String[] parts = input[i].split(" ");
+		            char operation = parts[0].charAt(0);
+		            if (operation == 'E') {
+		                int club = Integer.parseInt(parts[1]);
+		                int rollNumber = Integer.parseInt(parts[2]);
+		                clubQueues[club].add(rollNumber);
+		            } else if (operation == 'D') {
+		                for (int j = 1; j <= 4; j++) {
+		                    if (!clubQueues[j].isEmpty()) {
+		                        int frontRollNumber = clubQueues[j].poll();
+		                        System.out.println(j + " " + frontRollNumber);
+		                        break;
+		                    }
+		                }
+		            }
+		        }
+	}	public static void MasaiCodingCompetition() { 
+		Scanner fr =  new Scanner(System.in);
+        int N = fr.nextInt();
+         Queue<Integer> mq = new LinkedList<>(); 
+         Queue<Integer> q1 = new LinkedList<>(); 
+         Queue<Integer> q2 = new LinkedList<>();
+         Queue<Integer> q3 = new LinkedList<>(); 
+         Queue<Integer> q4 = new LinkedList<>();  
+         
+         for(int i = 0; i<N;i++){
+             String str = fr.next(); 
+             
+             if(str.equals("E"))
+             {
+                 int x = fr.nextInt();
+                 int y = fr.nextInt();
+                 mq.add(x);
+                 if(x == 1) {
+                	 q1.add(y);
+                 }else if(x == 2) {
+                	 q2.add(y);
+                 }else if(x == 3) {
+                	 q3.add(y);
+                 }else if(x == 4) {
+                	 q4.add(y);
+                 }  
+             } else {  
+            	 if(!q1.isEmpty() && mq.peek() == 1){
+        			 System.out.println(1 + " " + q1.remove());
+        			 if(q1.isEmpty()) {
+                		 mq.remove();
+                	 }
+        		 }else if(!q2.isEmpty() && mq.peek() == 2){
+        			 System.out.println(2 + " " + q2.remove());
+        			 if(q2.isEmpty()) {
+                		 mq.remove();
+                	 }
+        		 }else if(!q3.isEmpty() && mq.peek() == 3){
+        			 System.out.println(3 + " " + q3.remove());
+        			 if(q3.isEmpty()) {
+                		 mq.remove();
+                	 }
+        		 }else if(!q4.isEmpty() && mq.peek() == 4){
+        			 System.out.println(4 + " " + q4.remove());
+        			 if(q4.isEmpty()) {
+                		 mq.remove();
+                	 }
+        		 }
+              
+             }
+         } 
+	}
 	public static void rev(){
 	String sb = "Vinay";
 	 System.out.println(sb.toString());
@@ -359,7 +537,8 @@ public class SwapNumber {
 			
 		}
 		 
-		
+		int x = 0;
+		int y = 1; 
 		for(int i = 0; i<N-1;i++) {
 			for(int j = 0; j<N-i-1;j++) { 
 				if(students2[j].marks < students2[j+1].marks ) {
