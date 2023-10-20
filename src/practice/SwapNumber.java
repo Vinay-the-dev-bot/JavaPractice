@@ -338,50 +338,25 @@ public class SwapNumber {
     }
 	
 	public static void monoq() {
-		String str = "etmgbwpnblru";
+		String str = "lkpsmphsrhsufggvnhkpqifwyuxykvuihhfvqxfzevhfdzqvyslkeadrvsnfdxthrlrqdljdxttwqjuslddcvnrdhuudjiou";
 		int N = str.length();
-		int K = 1;
-
-		 Stack<String> st = new Stack<>();
-        StringBuilder sb2 = new StringBuilder();
-		 StringBuilder sb3 = new StringBuilder();
-		for(int i = 0 ;i<K;i++) {
-			sb3.append(str.charAt(i));
-			
+		int K = 2;
+		Stack<Character> st = new Stack<>();
+		for(int i = 0 ; i<N;i++) {
+			while(!st.isEmpty() && st.size()-1+N-i 	>=K && st.peek().compareTo(str.charAt(i))>0) {
+			st.pop();	
+			}
+			if(st.size()<K) {
+				st.push(str.charAt(i));
+			}
 		}
-		st.push(sb3.toString());
-         for(int i = 0; i<N-K+1;i++){ 
-//        	 if(!st.isEmpty()) {
-//        		 System.out.println(st.peek());
-//        	 }
-            StringBuilder sb = new StringBuilder();
-            for(int j = i; j<K+i;j++){
-                sb.append(str.charAt(j)); 
-            }
-//            System.out.println(sb + " : ");
-            String str2 = sb.toString(); 
-            if(!st.isEmpty()){
-                if(st.peek().compareTo(str2)>=0){
-//                    sb2.append(st.peek()); 
-                    st.push(str2);
-                }
-//                else{
-//                    sb2.append(str2);
-//                }
-            }
-//            st.push(str2);
-            
-         }
-         
-        	 System.out.println(sb2);
-         if(sb2.length() == 0) {
-        	 System.out.println(str);
-         }else {
-        	 for(int i = sb2.length()-K;i<sb2.length();i++) {
-        		 System.out.print(sb2.charAt(i));
-        	 }
-         }
-         System.out.println(st.peek()  );
+
+		  StringBuilder sb = new StringBuilder(); 
+//		System.out.println(st);
+		while(!st.isEmpty()) {
+			sb.append(st.pop());
+		}
+		System.out.println(sb.reverse());
 	}
 	
 	public static void DoctorsAppointment() { 
